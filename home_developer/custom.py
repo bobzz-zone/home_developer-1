@@ -24,3 +24,11 @@ def get_lead_source(doc,method):
 		doc.lead_source = frappe.get_value("Lead",doc.lead_name,"source")
 	else :
 		doc.lead_source = ""
+
+@frappe.whitelist()
+def retur_kavling(kavling):
+	kavling = frappe.get_doc("Kavling", kavling)
+	kavling.is_used = 0
+	kavling.flags.ignore_permissions = True
+	kavling.save()	
+	
